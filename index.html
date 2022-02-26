@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+
+<body>
+    <h1>List of Melodifestivalen</h1>
+
+    <form id="add-artist-form">
+        <input id="name" type="text" placeholder="Name">
+        <input id="song" type="text" placeholder="Song">
+        <input id="year" type="number" placeholder="Year">
+        <input id="winner" type="text" placeholder="Winner">
+        <button>Add</button>
+    </form>
+
+
+<div id="filters">
+    <form id="filter-by-song">
+    <input id="filter-song" type="text" placeholder="Filter by song">
+     <button>Filter</button>
+    </form>
+
+<form id="filter-by-year">
+        <input id="filter-year" type="number" placeholder="Filter by year">
+        <button>Filter</button>
+</form>
+
+
+<form id="filter-by-winner">
+    <input id="filter-winner" type="text" placeholder="Filter by winner">
+    <button>Filter</button>
+</form>
+
+    <button id="show-all" type="button">Show all</button>
+
+    <div id="headers">
+        <div>Name</div>
+        <div>Song</div>
+        <div>Year</div>
+        <div>Winner</div>
+        <div>Actions</div>
+    </div>
+
+    <div id="melodifestivalen"></div>
+
+    <script src="database.js"></script>
+    <script src="main.js"></script>
+</body>
+
+</html>

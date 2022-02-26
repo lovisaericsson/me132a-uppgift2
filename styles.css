@@ -1,0 +1,62 @@
+body {
+  margin: 0 auto;
+  max-width: 600px;
+  font-family: Courier;
+
+  background: rgb(233, 76, 161);
+  background: -moz-linear-gradient(
+    900deg,
+    rgba(233, 76, 161, 1) 0%,
+    rgba(199, 74, 233, 1) 100%
+  );
+  background: -webkit-linear-gradient(
+    90deg,
+    rgba(233, 76, 161, 1) 0%,
+    rgba(199, 74, 233, 1) 100%
+  );
+  background: linear-gradient(
+    90deg,
+    rgba(233, 76, 161, 1) 0%,
+    rgba(199, 74, 233, 1) 100%
+  );
+}
+
+h1 {
+  text-align: center;
+}
+
+#add {
+  margin-bottom: 20px;
+}
+
+#headers {
+  padding: 10px 20px;
+  border-bottom: 1px solid #aaa;
+  background: #ba68cb;
+  border-radius: 12px 12px 0 0;
+  overflow: hidden;
+  box-shadow: 0 5px 12px rgba(32, 32, 32, 0.3);
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+}
+
+#melodifestivalen {
+  background: #fafafa;
+  padding: 10px;
+}
+
+.melodifestivalen {
+  padding: 10px 10px;
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+}
+
+.melodifestivalen div {
+  /* Center vertically */
+  display: flex;
+  align-items: center;
+}
+
+.melodifestivalen:nth-child(odd) {
+  background: #fafafa;
+}
