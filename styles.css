@@ -1,6 +1,6 @@
 body {
   margin: 0 auto;
-  max-width: 600px;
+  max-width: 60vw;
   font-family: Courier;
 
   background: rgb(233, 76, 161);
@@ -25,8 +25,28 @@ h1 {
   text-align: center;
 }
 
-#add {
-  margin-bottom: 20px;
+#add-artist-form {
+  display: grid;
+  grid-template-columns: 1fr 1fr 100px 60px;
+  gap: 10px;
+  margin-bottom: 15px;
+  padding-bottom: 15px;
+  border-bottom: 1px solid #aaa;
+}
+
+#filters {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  margin-bottom: 15px;
+  gap: 15px;
+}
+
+#filter-by-song,
+#filter-by-year,
+#filter-by-winner {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 5px;
 }
 
 #headers {

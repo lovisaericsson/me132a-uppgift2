@@ -77,7 +77,7 @@ function getArtistsByWinner(artists, winner){
 // Renders a artist object into a HTML-element
 function renderArtist(artist){
     let div = document.createElement("div");
-    div.classList.add("artist");
+    div.classList.add("melodifestivalen");
     div.id = artist.id;
 
     div.innerHTML = `
@@ -97,13 +97,13 @@ function renderArtists(artists){
 
 
 //Go through all artist and insert their HTML
-for (let artist of artists){
-    let artistsElement = renderArtist(artist);
-    artistsElement.appendChild(artistsElement);
-  }
+    for (let artist of artists){
+    let artistElement = renderArtist(artist);
+    artistsElement.appendChild(artistElement);
+    }
 
 // Add remove-handlers for our artist
-setRemoveArtistHandlers();
+    setRemoveArtistHandlers();
 }
 
 //When <form id = "add-artist-form"> is submitted
@@ -160,6 +160,6 @@ function setFilterDogHandlers() {
 }
 
 // Initialize the page
-renderArtist(database);
-setAddArtistsHandler();
+renderArtists(database);
+setAddArtistHandler();
 setFilterArtistHandlers();
