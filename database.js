@@ -79,6 +79,6 @@ let database = [
         year: 2011, 
         winner: "yes"
 
-    },
+    }
     
 ];
