@@ -11,7 +11,7 @@ let database = [
     {
         id: 2, 
         name: "Carola Häggkvist",
-        song: "Fångad av",
+        song: "Fångad av en stormvind",
         year: 1991, 
         winner: "yes"
 
@@ -46,6 +46,38 @@ let database = [
         song: "Human",
         year: 2016, 
         winner: "no"
+
+    },
+    {
+        id: 7,
+        name: "Tusse",
+        song: "Voices",
+        year: 2021, 
+        winner: "yes"
+
+    },
+    {
+        id: 8,
+        name: "Eric Saade",
+        song: "Every minute",
+        year: 2021, 
+        winner: "no"
+
+    },
+    {
+        id: 9,
+        name: "Danny Saucedo",
+        song: "In The Club",
+        year: 2011, 
+        winner: "no"
+
+    },
+    {
+        id: 10,
+        name: "Eric Saade",
+        song: "Popular",
+        year: 2011, 
+        winner: "yes"
 
     },
     
