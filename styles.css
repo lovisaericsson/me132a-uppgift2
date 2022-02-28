@@ -1,6 +1,6 @@
 body {
   margin: 0 auto;
-  max-width: 70vw;
+  max-width: 80vw;
   font-family: Courier;
 
   background: rgb(233, 76, 161);
@@ -61,7 +61,7 @@ button {
   overflow: hidden;
   box-shadow: 0 12px 12px rgba(32, 32, 32, 0.3);
   display: grid;
-  grid-template-columns: repeat(5, 1fr);
+  grid-template-columns: repeat(6, 1fr);
 }
 
 #melodifestivalen {
@@ -73,7 +73,7 @@ button {
 .melodifestivalen {
   padding: 10px 10px;
   display: grid;
-  grid-template-columns: repeat(5, 1fr);
+  grid-template-columns: repeat(6, 1fr);
 }
 
 .melodifestivalen div {

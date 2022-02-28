@@ -10,9 +10,9 @@ let database = [
     },
     {
         id: 2, 
-        name: "Carola Häggkvist",
-        song: "Fångad av en stormvind",
-        year: 1991, 
+        name: "Sanna Nielsen",
+        song: "Undo",
+        year: 2014, 
         winner: "yes"
 
     },

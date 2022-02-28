@@ -78,21 +78,19 @@ function getArtistsByWinner(artists, winner){
 }
 
 // Renders a artist object into a HTML-element
-function renderArtist(artist){
+function renderArtist(artist, row){
     let div = document.createElement("div");
     div.classList.add("melodifestivalen");
     div.id = artist.id;
 
     div.innerHTML = `
-    <div>${artist.name}</div>
+        <div>${row}</div>
+        <div>${artist.name}</div>
         <div>${artist.song}</div>
         <div>${artist.year}</div>
         <div>${artist.winner}</div>
         <button type="button">Remove</button>
     `;
-    if(div.innerHTML == ""){
-        return null;
-    }
     return div;
 }
 
@@ -103,13 +101,11 @@ function renderArtists(artists){
 
 
 //Go through all artist and insert their HTML
+    let row = 1;
     for (let artist of artists){
-    let artistElement = renderArtist(artist);
-    
-    if(artistElement != null){
-    artistsElement.appendChild(artistElement);
-    }
-
+       let artistElement = renderArtist(artist, row);
+       artistsElement.appendChild(artistElement);
+       row++;
     }
 
 // Add remove-handlers for our artist
@@ -119,11 +115,17 @@ function renderArtists(artists){
 //When <form id = "add-artist-form"> is submitted
 function onAddArtistSubmit(event){
     event.preventDefault();
-
+    
     let name = document.getElementById("name").value;
     let song = document.getElementById("song").value;
     let year = document.getElementById("year").value;
     let winner = document.getElementById("winner").value;
+
+//Check if any input is empty then the artist should not be added 
+    if(name == "" || song == "" || year == "" || winner == ""){
+       alert(`You must fill in all input fields`);
+        return null;
+    }
 
     let artist = createNewartist(name, song, year, winner);
     
@@ -145,6 +147,11 @@ function setAddArtistHandler(){
 // When a user clicks the remove-artist-button 
 
 function onRemoveArtistClick(event){
+    let isSure = confirm(`Are you sure you want to remove this artist?`);
+
+    if (!isSure) {
+        return null; 
+    } 
     let button = event.target;
     let id = button.parentElement.id;
     //Uses the global variable `database``
