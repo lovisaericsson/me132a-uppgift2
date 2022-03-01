@@ -1,6 +1,6 @@
 "use strict";
 // Include the link to your Github Repository here:
-// Link:
+// Link: https://github.com/lovisaericsson/me132a-uppgift2 
 
 // Creates a new artist object and then returns it
 function createNewartist(name, song, year, winner) {
@@ -14,73 +14,63 @@ function createNewartist(name, song, year, winner) {
     return artist;
 }
 
-//Creates a new artist object from prompts
-function createNewartistFromPrompt() {
-    let name = prompt("Enter the name of the artist");
-    let song = prompt("Enter the song of the artist");
-    let year = prompt("Enter the year when the artist song this truck");
-    let winner = prompt("Enter if the artist won");
-    // Now when we have the properties of our artist we can simply re-use our
-    // previous function, and at the same time convert `age` to a number, since
-    // we receive strings from `prompt`
-    let newArtist = createNewartist(name, song, year, winner);
-    return newArtist;
-}
-
-//Adds a new artist to our database
+// Adds a new artist to our database
 function addArtistToDatabase(database, artist) {
     database.push(artist);
 }
 
-//Removes a artist based on its name from our database
-function removeArtistById(artists, id){
-    for(let i = 0; i < artists.length;i++){
+// Removes a artist based on its name from our database
+function removeArtistById(artists, id) {
+    for (let i = 0; i < artists.length;i++) {
         let artist = artists [i];
-        if(artist.id == id){
+        if (artist.id == id) {
             artists.splice(i, 1);
             return;
         }
     }
 }
 
-//Returns all artists based on their song
-function getArtistsBySong(artists, song){
+// Returns all artists based on their song
+function getArtistsBySong(artists, song) {
     let artistsBySong = [];
    
-    for(let artist of artists){
-        if(artist.song.toLowerCase() == song.toLowerCase()){
+    for (let artist of artists) {
+        if (artist.song.toLowerCase() == song.toLowerCase()) {
             artistsBySong.push(artist);
         }
     }
+
     return artistsBySong;
 }
 
-//Returns all artists based on their year
-function getArtistsByYear(artists, year){
+// Returns all artists based on their year
+function getArtistsByYear(artists, year) {
     let artistsByYear = [];
 
-    for(let artist of artists){
-        if(artist.year == year){
+    for (let artist of artists) {
+        if (artist.year == year) {
             artistsByYear.push(artist);
         }
     }
+
     return artistsByYear;
 }
 
-//Returns all artists based on winner
-function getArtistsByWinner(artists, winner){
+// Returns all artists based on winner
+function getArtistsByWinner(artists, winner) {
     let artistsByWinner = [];
 
-    for(let artist of artists){
-        if(artist.winner.toLowerCase() == winner.toLowerCase()){
+    for (let artist of artists) {
+        if (artist.winner.toLowerCase() == winner.toLowerCase()) {
             artistsByWinner.push(artist);
         }
     }
+
     return artistsByWinner;
 }
 
-//Renders a artist object into a HTML-element
-function renderArtist(artist, row){
+// Renders a artist object into a HTML-element
+function renderArtist(artist, row) {
     let div = document.createElement("div");
     div.classList.add("melodifestivalen");
     div.id = artist.id;
@@ -93,29 +83,30 @@ function renderArtist(artist, row){
         <div>${artist.winner}</div>
         <button type="button">Remove</button>
     `;
+
     return div;
 }
 
-//Renders an array of artist into HTML
-function renderArtists(artists){
+// Renders an array of artist into HTML
+function renderArtists(artists) {
     let artistsElement = document.getElementById("melodifestivalen");
     artistsElement.innerHTML = "";
 
 
-//Go through all artist and insert their HTML
+// Go through all artist and insert their HTML
     let row = 1;
-    for (let artist of artists){
+    for (let artist of artists) {
        let artistElement = renderArtist(artist, row);
        artistsElement.appendChild(artistElement);
        row++;
     }
 
-//Add remove-handlers for our artist
+// Add remove-handlers for our artist
     setRemoveArtistHandlers();
 }
 
-//When <form id = "add-artist-form"> is submitted
-function onAddArtistSubmit(event){
+// When <form id = "add-artist-form"> is submitted
+function onAddArtistSubmit(event) {
     event.preventDefault();
     
     let name = document.getElementById("name").value;
@@ -123,89 +114,100 @@ function onAddArtistSubmit(event){
     let year = document.getElementById("year").value;
     let winner = document.getElementById("winner").value;
 
-//Check if any input is empty then the artist should not be added 
-    if(name == "" || song == "" || year == "" || winner == ""){
+// Check if any input is empty then the artist should not be added 
+    if (name == "" || song == "" || year == "" || winner == "") {
        alert(`You must fill in all input fields`);
-        return null;
+       return null;
     }
 
     let artist = createNewartist(name, song, year, winner);
-    
+
+// Calculate the newly created artists ID
     artist.id = database[database.length-1].id + 1;
 
     addArtistToDatabase(database, artist);
     renderArtists(database);
 
+// Reset (empty) all form fields
     let form = document.getElementById("add-artist-form");
     form.reset();
 }
 
-//Add "click" event handler to < button id ="add">
-function setAddArtistHandler(){
+// Add "click" event handler to < button id ="add">
+function setAddArtistHandler() {
     let form = document.getElementById("add-artist-form");
     form.addEventListener("submit", onAddArtistSubmit);
 }
 
-//When a user clicks the remove-artist-button 
-
-function onRemoveArtistClick(event){
-    let isSure = confirm(`Are you sure you want to remove this artist?`);
+// When a user clicks the remove-artist-button 
+function onRemoveArtistClick(event) {
+    let button = event.target;
+    let id = button.parentElement.id;
+    let name = getArtistFromId(database, id);
+    let isSure = confirm(`Are you sure you want to remove this artist ${name}?`);
 
     if (!isSure) {
         return null; 
     } 
-    let button = event.target;
-    let id = button.parentElement.id;
-    //Uses the global variable `database``
-    removeArtistById(database,id);
-    //Re-render (without the newly deleted artist)
-    renderArtists(database); 
 
+function getArtistFromId(artists, id) {
+    for (let i = 0; i < artists.length;i++) {
+        let artist = artists [i];
+        if (artist.id == id) {
+          return artist.name; 
+        }
+    }
 }
 
-//Add "click" event handler to all remove-buttons
-function setRemoveArtistHandlers(){
+// Uses the global variable `database``
+    removeArtistById(database,id);
+// Re-render (without the newly deleted artist)
+    renderArtists(database); 
+}
+
+// Add "click" event handler to all remove-buttons
+function setRemoveArtistHandlers() {
     let buttons = document.querySelectorAll(".melodifestivalen button");
 
-    for(let button of buttons){
+    for (let button of buttons) {
         button.addEventListener("click", onRemoveArtistClick);
     }
 }
 
-//Filter artist by song 
-function onFilterBySongSubmit(event){
+// Filter artist by song 
+function onFilterBySongSubmit(event) {
     event.preventDefault();
-    //What song?
+// What song?
     let song = document.getElementById("filter-song").value;
-    // Get the artists by song 
+// Get the artists by song 
     let artists = getArtistsBySong(database, song);
-    //Re-render them 
+// Re-render them 
     renderArtists(artists); 
 }
 
-//Filter artist by year 
-function onFilterByYearSubmit(event){
+// Filter artist by year 
+function onFilterByYearSubmit(event) {
     event.preventDefault();
-    //What year?
+// What year?
     let year = document.getElementById("filter-year").value;
-    // Get the artists by year 
+// Get the artists by year 
     let artists = getArtistsByYear(database, year);
-    //Re-render them 
+// Re-render them 
     renderArtists(artists); 
 }
 
-//Filter artist by winner 
-function onFilterByWinnerSubmit(event){
+// Filter artist by winner 
+function onFilterByWinnerSubmit(event) {
     event.preventDefault();
-    //Has the artist won? Yes or no?
+// Has the artist won? Yes or no?
     let winner = document.getElementById("filter-winner").value;
-    // Ge the artists by winner 
+// Ge the artists by winner 
     let artists = getArtistsByWinner(database, winner);
-    //Re-render them 
+ // Re-render them 
     renderArtists(artists); 
 }
 
-
+// Reset filter 
 function onShowAllClick() {
     document.getElementById("filter-song").value = "";
     document.getElementById("filter-year").value = "";
@@ -213,6 +215,7 @@ function onShowAllClick() {
     renderArtists(database);
 }
 
+// Add addEventListner to filter buttons 
 function setFilterArtistHandlers() {
     let songForm = document.getElementById("filter-by-song");
     let yearForm = document.getElementById("filter-by-year");
@@ -225,7 +228,7 @@ function setFilterArtistHandlers() {
     showAll.addEventListener("click", onShowAllClick);
 }
 
-//Initialize the page
+// Initialize the page
 renderArtists(database);
 setAddArtistHandler();
 setFilterArtistHandlers();
