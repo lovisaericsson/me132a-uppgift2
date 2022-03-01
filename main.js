@@ -149,7 +149,8 @@ function onRemoveArtistClick(event) {
     if (!isSure) {
         return null; 
     } 
-
+    
+// To get the artist name from the id in the database 
 function getArtistFromId(artists, id) {
     for (let i = 0; i < artists.length;i++) {
         let artist = artists [i];
