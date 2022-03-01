@@ -1,4 +1,6 @@
 "use strict";
+// Include the link to your Github Repository here:
+// Link:
 
 // Creates a new artist object and then returns it
 function createNewartist(name, song, year, winner) {
@@ -12,7 +14,7 @@ function createNewartist(name, song, year, winner) {
     return artist;
 }
 
-// Creates a new artist object from prompts
+//Creates a new artist object from prompts
 function createNewartistFromPrompt() {
     let name = prompt("Enter the name of the artist");
     let song = prompt("Enter the song of the artist");
@@ -25,12 +27,12 @@ function createNewartistFromPrompt() {
     return newArtist;
 }
 
-// Adds a new artist to our database
+//Adds a new artist to our database
 function addArtistToDatabase(database, artist) {
     database.push(artist);
 }
 
-// Removes a artist based on its name from our database
+//Removes a artist based on its name from our database
 function removeArtistById(artists, id){
     for(let i = 0; i < artists.length;i++){
         let artist = artists [i];
@@ -53,7 +55,7 @@ function getArtistsBySong(artists, song){
     return artistsBySong;
 }
 
-// Returns all artists based on their year
+//Returns all artists based on their year
 function getArtistsByYear(artists, year){
     let artistsByYear = [];
 
@@ -65,7 +67,7 @@ function getArtistsByYear(artists, year){
     return artistsByYear;
 }
 
-// Returns all artists based on winner
+//Returns all artists based on winner
 function getArtistsByWinner(artists, winner){
     let artistsByWinner = [];
 
@@ -77,7 +79,7 @@ function getArtistsByWinner(artists, winner){
     return artistsByWinner;
 }
 
-// Renders a artist object into a HTML-element
+//Renders a artist object into a HTML-element
 function renderArtist(artist, row){
     let div = document.createElement("div");
     div.classList.add("melodifestivalen");
@@ -108,7 +110,7 @@ function renderArtists(artists){
        row++;
     }
 
-// Add remove-handlers for our artist
+//Add remove-handlers for our artist
     setRemoveArtistHandlers();
 }
 
@@ -138,13 +140,13 @@ function onAddArtistSubmit(event){
     form.reset();
 }
 
-// Add "click" event handler to < button id ="add">
+//Add "click" event handler to < button id ="add">
 function setAddArtistHandler(){
     let form = document.getElementById("add-artist-form");
     form.addEventListener("submit", onAddArtistSubmit);
 }
 
-// When a user clicks the remove-artist-button 
+//When a user clicks the remove-artist-button 
 
 function onRemoveArtistClick(event){
     let isSure = confirm(`Are you sure you want to remove this artist?`);
@@ -223,7 +225,7 @@ function setFilterArtistHandlers() {
     showAll.addEventListener("click", onShowAllClick);
 }
 
-// Initialize the page
+//Initialize the page
 renderArtists(database);
 setAddArtistHandler();
 setFilterArtistHandlers();
